@@ -1,0 +1,13 @@
+h1{
+    font-weight: bold;
+}
+
+.homepage_content{
+    text-align: center;
+}
+
+.nickname_input{
+    width: 25%;
+    text-align: center;
+    margin-left: 38%;
+}
