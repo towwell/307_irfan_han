@@ -10,6 +10,28 @@ echo $txt, "<br>";
 
 //Read quiztype and get questions
 //Sports - Fill in the blank
+// if (file_exists("sportquestion.txt") && ($handle = fopen("sportquestion.txt","r")) == TRUE)
+// {
+//     $row = 0;
+//     $fileopen = TRUE;
+//     while (($data = fgetcsv($handle, 1000, ","))==TRUE){
+//         $num = count($data);
+//         for ($c = 0; $c < $num; $c++){
+//             echo "(" . $data[$c] . ")";
+//             echo "<br>";
+//             $questionNo[$row] = $data[0];
+//             $question[$row] = $data[1];
+//             $answer[$row] = $data[2];
+//             $keyval[$questionNo[$row]] = array($question[$row], $answer[$row]);
+//             $row++;
+//         }
+//     }
+//     fclose($handle);
+// }
+// else{
+//     echo "File does not exist","<br>";
+// }
+
 if ($quiztype == 'sports'){
     $quizpool = array( 1=>array('question'=>'A soccer ball consists of hexagon and __ shapes?', 'answer'=> 'pentagon'),
                    2=>array('question'=>'Grand slam is associated with what sport?', 'answer'=> 'tennis'),

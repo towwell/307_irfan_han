@@ -1,0 +1,6 @@
+1,A soccer ball consists of hexagon and __ shapes?,pentagon
+2,Grand slam is associated with what sport?,tennis
+3,Joseph Schooling participates in what sport?,swimming
+4,What is 1 under par called in golf?,birdie
+5,The olympic rings are made up of colours blue yellow black green and __,red
+6,In baseball what is it called when the batter hits the ball out of the stadium,home run
