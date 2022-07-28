@@ -1,0 +1,6 @@
+1,What is the name of the leader of the autobots from the movie Transformers?,optimus prime,Omega Prime,Sentinel Prime,Optimum Prime,Optimus Prime
+2,How many Harry Potter films are there?,8,5,8,10,6
+3,Which of these is the highest grossing movie?,avatar,Avatar,Avengers: Endgame,Titanic,Star Wars: The Force Awakens
+4,What is the name of the latest spiderman animated movie,spider-man: into the spider-verse,Spider-Man: From the Spider-Verse,Spider-Man: Across the Spider-Verse,Spider-Man: Into the Spider-Verse, Spider-Man: Through the Spider-Verse
+5,In the Matrix what pill does Neo take,red,Blue,Red,Yellow,Green
+6,What movie did the song 'Rewrite the Stars' come from,the greatest showman,The Greatest Showman,La La Land,Cats,Bohemian Rhapsody  
