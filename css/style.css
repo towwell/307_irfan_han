@@ -78,3 +78,8 @@ label .select:after {
     border-radius: 50%;
     background: white;
 }
+
+.tablequiz{
+    width: 60%;
+    margin-left: 20%;
+}

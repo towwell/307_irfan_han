@@ -1,28 +1,39 @@
 <?php
-$userArray = array($_POST["user_ans_0"],$_POST["user_ans_1"],$_POST["user_ans_2"]);
-print_r($userArray);
-$answerArray = array($_POST["answer_0"],$_POST["answer_1"],$_POST["answer_2"]);
-print_r($answerArray);
+session_start();
+if (isset($_SESSION['counter'])) {
+    $_SESSION['counter'] += 1;
+}
+else{
+    $_SESSION['counter'] = 1;
+}
+$userArray = array($_POST["user_ans_0"], $_POST["user_ans_1"], $_POST["user_ans_2"]);
+$answerArray = array($_POST["answer_0"], $_POST["answer_1"], $_POST["answer_2"]);
+$arrayResults = [];
+$arrayPoints = [];
 
 $qns_wrong = 0;
-$qns_correct = 0; 
+$qns_correct = 0;
 
-for($x = 0; $x <= 2; $x++){
-    if(strtolower($userArray[$x]) == $answerArray[$x]){
-        print_r("Is correct");
+for ($x = 0; $x <= 2; $x++) {
+    if (strtolower($userArray[$x]) == $answerArray[$x]) {
+        array_push($arrayResults,'Correct');
+        array_push($arrayPoints,'5');
         $qns_correct++;
-    }
-    else{
-        print_r("Is wrong");
+    } else {
+        array_push($arrayResults,'Wrong');
+        array_push($arrayPoints,'-3');
         $qns_wrong++;
     }
 }
 
 $total_points = 0;
-$total_points = ($qns_correct*5) - ($qns_wrong*3);
+$total_points = ($qns_correct * 5) - ($qns_wrong * 3);
+//echo $total_points;
 
-echo $total_points;
+$_SESSION['totalpoints'] += $total_points;
+
 ?>
+
 
 <head>
     <!-- Bootstrap -->
@@ -37,5 +48,77 @@ echo $total_points;
 </head>
 
 <body>
-    
+    <div class="row">
+        <div class="jumbotron text-center">
+            <h1>Quiz results</h1>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table tablequiz">
+            <thead>
+                <tr>
+                    <th>Question No.</th>
+                    <th>Answer</th>
+                    <th>Points</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td><?php echo $arrayResults[0];?></td>
+                    <td><?php echo $arrayPoints[0];?></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><?php echo $arrayResults[1];?></td>
+                    <td><?php echo $arrayPoints[1];?></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td><?php echo $arrayResults[2];?></td>
+                    <td><?php echo $arrayPoints[2];?></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <table class="table tablequiz">
+            <thead>
+                <tr>
+                    <th>Nickname</th>
+                    <th>Attempt</th>
+                    <th>Points from attempt</th>
+                    <th>Total Points all attempts</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><?php echo $_SESSION["nickname"];?></td>
+                    <td><?php echo $_SESSION['counter'];?></td>
+                    <td><?php echo $total_points;?></td>
+                    <td><?php echo $_SESSION['totalpoints'];?></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row homepage_content">
+        <form action="quizpage.php" method="get">
+            <div class="form-group">
+                <input type="hidden" name="name" value="<?php echo $_SESSION["nickname"]?>">
+                <div class="form-group">
+                    <label for="quiztype">Attempt new Quiz</label>
+                    <div class="radio"><input type="radio" name="quiztype" value="sports">Sports</div>
+                    <div class="radio"><input type="radio" name="quiztype" value="movies">Movies</div>
+                </div>
+                <input type="submit" class="btn btn-primary">
+        </form>
+    </div>
+    <div class="row">
+        <form action="leaderboard.php" method="post" style="display:inline-flex;">
+            <input type="submit" class="btn btn-warning" name="saveLeaderboard" value="Save Attempt & View Leaderboards" style="margin-right: 5%;" />
+        </form>
+        <form action="homepage.php" method="post" style="display:inline-block;">
+            <input type="submit" class="btn btn-danger" name="exitHomepage" value="Save Attempt & Exit" style="margin-left: 5%;" />
+        </form>
+        </div>
 </body>
