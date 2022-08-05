@@ -4,4 +4,4 @@ This is a school project based on ISIT307 Assignment 1.
 
 Created by 
 - Irfan
-- Zhen Ghan
+- Zheng han
