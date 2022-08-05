@@ -37,6 +37,8 @@ $_SESSION['totalpoints'] = 0;
                 <input type="submit" class="btn btn-primary">
         </form>
     </div>
-    <button type="button" class="btn btn-warning">View Leaderboards</button>
+    <form action="leaderboard.php" method="post" style="display:inline-block;">
+    <input type="submit" class="btn btn-warning" name="saveLeaderboard" value="View Leaderboards" style="margin-right: 5%;" />
+	</form>
 </body>
 </html>
