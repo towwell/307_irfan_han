@@ -22,7 +22,7 @@ $_SESSION['totalpoints'] = 0;
     <div class="row">
         <div class="jumbotron text-center">
             <h1>Funny quiz</h1>
-            <p>By Irfan and Zhen Ghan</p>
+            <p>By Irfan and Zheng Han</p>
         </div>
     </div>
     <div class="row homepage_content">
