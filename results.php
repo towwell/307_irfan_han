@@ -2,8 +2,7 @@
 session_start();
 if (isset($_SESSION['counter'])) {
     $_SESSION['counter'] += 1;
-}
-else{
+} else {
     $_SESSION['counter'] = 1;
 }
 $userArray = array($_POST["user_ans_0"], $_POST["user_ans_1"], $_POST["user_ans_2"]);
@@ -16,12 +15,12 @@ $qns_correct = 0;
 
 for ($x = 0; $x <= 2; $x++) {
     if (strtolower($userArray[$x]) == $answerArray[$x]) {
-        array_push($arrayResults,'Correct');
-        array_push($arrayPoints,'5');
+        array_push($arrayResults, 'Correct');
+        array_push($arrayPoints, '5');
         $qns_correct++;
     } else {
-        array_push($arrayResults,'Wrong');
-        array_push($arrayPoints,'-3');
+        array_push($arrayResults, 'Wrong');
+        array_push($arrayPoints, '-3');
         $qns_wrong++;
     }
 }
@@ -53,7 +52,7 @@ $_SESSION['totalpoints'] += $total_points;
             <h1>Quiz results</h1>
         </div>
     </div>
-    <div class="row">
+    <div class="row" id="questionResults">
         <table class="table tablequiz">
             <thead>
                 <tr>
@@ -65,18 +64,18 @@ $_SESSION['totalpoints'] += $total_points;
             <tbody>
                 <tr>
                     <td>1</td>
-                    <td><?php echo $arrayResults[0];?></td>
-                    <td><?php echo $arrayPoints[0];?></td>
+                    <td><?php echo $arrayResults[0]; ?></td>
+                    <td><?php echo $arrayPoints[0]; ?></td>
                 </tr>
                 <tr>
                     <td>2</td>
-                    <td><?php echo $arrayResults[1];?></td>
-                    <td><?php echo $arrayPoints[1];?></td>
+                    <td><?php echo $arrayResults[1]; ?></td>
+                    <td><?php echo $arrayPoints[1]; ?></td>
                 </tr>
                 <tr>
                     <td>3</td>
-                    <td><?php echo $arrayResults[2];?></td>
-                    <td><?php echo $arrayPoints[2];?></td>
+                    <td><?php echo $arrayResults[2]; ?></td>
+                    <td><?php echo $arrayPoints[2]; ?></td>
                 </tr>
             </tbody>
         </table>
@@ -93,10 +92,10 @@ $_SESSION['totalpoints'] += $total_points;
             </thead>
             <tbody>
                 <tr>
-                    <td><?php echo $_SESSION["nickname"];?></td>
-                    <td><?php echo $_SESSION['counter'];?></td>
-                    <td><?php echo $total_points;?></td>
-                    <td><?php echo $_SESSION['totalpoints'];?></td>
+                    <td><?php echo $_SESSION["nickname"]; ?></td>
+                    <td><?php echo $_SESSION['counter']; ?></td>
+                    <td><?php echo $total_points; ?></td>
+                    <td><?php echo $_SESSION['totalpoints']; ?></td>
                 </tr>
             </tbody>
         </table>
@@ -104,7 +103,7 @@ $_SESSION['totalpoints'] += $total_points;
     <div class="row homepage_content">
         <form action="quizpage.php" method="get">
             <div class="form-group">
-                <input type="hidden" name="name" value="<?php echo $_SESSION["nickname"]?>">
+                <input type="hidden" name="name" value="<?php echo $_SESSION["nickname"] ?>">
                 <div class="form-group">
                     <label for="quiztype">Attempt new Quiz</label>
                     <div class="radio"><input type="radio" name="quiztype" value="sports">Sports</div>
@@ -113,12 +112,9 @@ $_SESSION['totalpoints'] += $total_points;
                 <input type="submit" class="btn btn-primary">
         </form>
     </div>
-    <div class="row">
-        <form action="leaderboard.php" method="post" style="display:inline-flex;">
-            <input type="submit" class="btn btn-warning" name="saveLeaderboard" value="Save Attempt & View Leaderboards" style="margin-right: 5%;" />
+    <div class="saveAttempt">
+        <form action="finalAttempt.php" method="get">
+            <input type="submit" class="btn btn-success" name="saveScore" value="Save Attempt to Leaderboard" />
         </form>
-        <form action="homepage.php" method="post" style="display:inline-block;">
-            <input type="submit" class="btn btn-danger" name="exitHomepage" value="Save Attempt & Exit" style="margin-left: 5%;" />
-        </form>
-        </div>
+    </div>
 </body>
