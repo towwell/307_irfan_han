@@ -7,7 +7,6 @@ $_SESSION["quiztype"] = $_GET["quiztype"];
 $name = $_GET["name"];
 $quiztype = $_GET["quiztype"];
 $txt = 'Good luck ' . $name . '!';
-echo $txt, "<br>";
 
 //Read quiztype and get questions
 //Sports - Fill in the blank
@@ -74,6 +73,7 @@ foreach ($qtspick_key as $key) {
 <html>
 
 <head>
+    <title>Funny Quiz - Quiz page</title>
     <!-- Bootstrap -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -86,6 +86,12 @@ foreach ($qtspick_key as $key) {
 </head>
 
 <body>
+<div class="row">
+        <div class="jumbotron text-center">
+            <h1>Quiz Page</h1>
+            <p><?php echo $txt ?></p>
+        </div>
+    </div>
     <form action="results.php" method="post">
         <div class="homepage_content">
         <?php foreach ($pickqts as $questionNo => $value) { ?>
