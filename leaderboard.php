@@ -11,11 +11,33 @@ function SBN()
     natsort($lines);
     file_put_contents("leaderboard.txt", implode("", $lines));
 }
+
+
 if(array_key_exists('Sort_BN',$_POST)){
-   SBN();
+SBN();
 }
 ?>
+<?php
+function SBS()
+{
+	$lines = file("leaderboard.txt");
+	foreach($lines as $string){
+		$row = explode(',',$string);
+		$newArray[] = $row[2];
+		rsort($newArray);
+	}
+	
+		echo '<pre>';
+		print_r($newArray);
+		echo '</pre>';
+    //file_put_contents("leaderboard.txt", implode("", $lines));
+}
 
+
+if(array_key_exists('Sort_BS',$_POST)){
+SBS();
+}
+?>
 <head>
     <!-- Bootstrap -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -60,11 +82,12 @@ if(array_key_exists('Sort_BN',$_POST)){
         <form method="post" style="display:inline-block;">
             <input type="submit" class="btn btn-primary" name="Sort_BN" id="Sort_BN" value="Sort By Name"  />
 			</form>
-		<form action="homepage.php" method="post" style="display:inline-block;">
-            <input type="submit" class="btn btn-primary" name="exitHomepage" value="Sort By Score"/>
+		<form method="post" style="display:inline-block;">
+            <input type="submit" class="btn btn-primary" name="Sort_BS" id="Sort_BS" value="Sort By Score"/>
 			</form>
 		<form action="homepage.php" method="post" style="display:inline-block;">
             <input type="submit" class="btn btn-danger" name="exitHomepage" value="Exit" style="margin-left: 5%;" />
 		</form>
     </div>
 </body>
+
