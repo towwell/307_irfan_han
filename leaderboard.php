@@ -7,37 +7,48 @@ $headerText = "You are currently viewing the Leaderboard";
 <?php
 function SBN()
 {
-   	$lines = file("leaderboard.txt");
+    $lines = file("leaderboard.txt");
     natsort($lines);
     file_put_contents("leaderboard.txt", implode("", $lines));
 }
 
 
-if(array_key_exists('Sort_BN',$_POST)){
-SBN();
+if (array_key_exists('Sort_BN', $_POST)) {
+    SBN();
 }
 ?>
 <?php
 function SBS()
 {
-	$lines = file("leaderboard.txt");
-	foreach($lines as $string){
-		$row = explode(',',$string);
-		$newArray[] = $row[2];
-		rsort($newArray);
-	}
-	
-		echo '<pre>';
-		print_r($newArray);
-		echo '</pre>';
-    //file_put_contents("leaderboard.txt", implode("", $lines));
+    $lines = file("leaderboard.txt");
+    $dataArray = [];
+    foreach ($lines as $string) {
+        $row = explode(',', $string);
+        $key = $row[2];
+        $value = $row[0] . "," . $row[1];
+        $dataArray += array($key => $value);
+    }
+    krsort($dataArray, SORT_NUMERIC);
+    $txt = '';
+
+    foreach ($dataArray as $key => $value) {
+        $explodedVal = explode(',', $value);
+        $txt .= $explodedVal[0] . ',' . $explodedVal[1] . ',' . $key;
+
+    }
+    $myfile = fopen("leaderboard.txt", "w")
+    or die("Error opening file");
+
+    fwrite($myfile, $txt);
+    fclose($myfile);
 }
 
 
-if(array_key_exists('Sort_BS',$_POST)){
-SBS();
+if (array_key_exists('Sort_BS', $_POST)) {
+    SBS();
 }
 ?>
+
 <head>
     <!-- Bootstrap -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -68,26 +79,26 @@ SBS();
             <tbody>
                 <tr>
                     <td><?php $file = fopen("leaderboard.txt", "r") or die("Unable to open file!");
-					while (!feof($file)){   
-					$data = fgets($file); 
-					echo "<tr><td>" . str_replace(',','</td><td>',$data) . '</td></tr>';}
-					echo '</table>';
-					fclose($file);?>	
-					</td>
+                        while (!feof($file)) {
+                            $data = fgets($file);
+                            echo "<tr><td>" . str_replace(',', '</td><td>', $data) . '</td></tr>';
+                        }
+                        echo '</table>';
+                        fclose($file); ?>
+                    </td>
                 </tr>
             </tbody>
         </table>
     </div>
     <div class="row homepage_content">
         <form method="post" style="display:inline-block;">
-            <input type="submit" class="btn btn-primary" name="Sort_BN" id="Sort_BN" value="Sort By Name"  />
-			</form>
-		<form method="post" style="display:inline-block;">
-            <input type="submit" class="btn btn-primary" name="Sort_BS" id="Sort_BS" value="Sort By Score"/>
-			</form>
-		<form action="homepage.php" method="post" style="display:inline-block;">
+            <input type="submit" class="btn btn-primary" name="Sort_BN" id="Sort_BN" value="Sort By Name" />
+        </form>
+        <form method="post" style="display:inline-block;">
+            <input type="submit" class="btn btn-primary" name="Sort_BS" id="Sort_BS" value="Sort By Score" />
+        </form>
+        <form action="homepage.php" method="post" style="display:inline-block;">
             <input type="submit" class="btn btn-danger" name="exitHomepage" value="Exit" style="margin-left: 5%;" />
-		</form>
+        </form>
     </div>
 </body>
-
